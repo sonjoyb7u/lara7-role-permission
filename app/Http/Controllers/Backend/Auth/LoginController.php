@@ -31,7 +31,22 @@ class LoginController extends Controller
     protected $redirectTo = RouteServiceProvider::ADMIN_DASHBOARD;
 
 
-    public function showLoginForm(Request $request)
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * Show the application's Admin Auth login form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showLoginForm()
     {
         return view('admin.auth.login');
     }
@@ -51,12 +66,12 @@ class LoginController extends Controller
         } elseif(Auth::guard('admin')->attempt(['username'=>$request->email, 'password'=>$request->password, 'status'=>'active'], $request->remember)) {
             setMessage('success', 'You are successfully loggedin...');
             return redirect()->intended(route('admin.index'));
-        } elseif (Auth::guard('admin')->attempt(['phonenumber'=>$request->email, 'password'=>$request->password, 'status'=>'active'], $request->remember)) {
+        } elseif (Auth::guard('admin')->attempt(['phone'=>$request->email, 'password'=>$request->password, 'status'=>'active'], $request->remember)) {
             setMessage('success', 'You are successfully loggedin...');
             return redirect()->intended(route('admin.index'));
         } else {
             setMessage('danger', 'Invailed Credantials, please check...');
-            return redirect()->back();
+            return redirect()->route('admin.login');
         }
     }
 

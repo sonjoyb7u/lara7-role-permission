@@ -30,5 +30,7 @@ class DashboardController extends Controller
         $total_roles = count(Role::select('id')->get());
         $total_permissions = count(Permission::select('id')->get());
         return view('admin.pages.dashboard.index', compact('total_admins', 'total_roles', 'total_permissions'));
+
     }
+
 }

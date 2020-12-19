@@ -26,7 +26,7 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function redirectAdminDashboard() {
-        return redirect()->route('admin.index');
-    }
+//    public function redirectAdminDashboard() {
+//        return redirect()->route('admin.index');
+//    }
 }

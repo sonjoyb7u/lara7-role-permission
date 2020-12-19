@@ -9,8 +9,8 @@
         <hr>
         <p class="mt-2 font-weight-bolder font-italic">{{ $exception->getMessage() }}</p>
         <a href="{{ route('admin.index') }}">Back to Dashboard</a>
-        @if(!Auth::guard('admin')->user())
-        <a href="{{ route('admin.login') }}">Again Login</a>
+        @if(!Auth::guard('admin')->user() || Auth::guard())
+            <a href="{{ route('admin.login') }}">Again Login</a>
         @endif
     </div>
 @endsection

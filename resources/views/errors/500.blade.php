@@ -7,7 +7,7 @@
         <h2>500</h2>
         <p>Internal Server Error!</p>
         <a href="{{ route('admin.index') }}">Back to Dashboard</a>
-        @if(!Auth::guard('admin')->user())
+        @if(!Auth::guard('admin')->user() || Auth::guard())
             <a href="{{ route('admin.login') }}">Again Login</a>
         @endif
     </div>

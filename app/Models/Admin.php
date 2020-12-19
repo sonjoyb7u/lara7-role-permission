@@ -13,13 +13,15 @@ class Admin extends Authenticatable
 {
     use Notifiable, HasRoles;
 
+    protected $guard_name = 'admin';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'username', 'password', 'status'
+        'name', 'email', 'username', 'phone', 'password', 'status'
     ];
 
     /**
